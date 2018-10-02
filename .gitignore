@@ -23,3 +23,7 @@ yarn-error.log*
 
 #config
 config.js
+
+#webpack file config
+config/
+scripts/
