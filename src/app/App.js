@@ -1,28 +1,44 @@
-import React from 'react';
+import React,{ Component } from 'react';
 import './App.css';
+import  NoteList from '../components/NoteList/NoteList';
+import { observer, inject } from 'mobx-react'
 
-const App = () => {
-    return (
-        <div className="container">
 
-            <div className="app">
-                <header className="app-header">
-                    <h1>React+Redux Taking Note</h1>
-                </header>
-            </div>
+@inject('notesStore')
+@observer
+class App extends Component{
 
-            <div className="row">
-                <div className="col-md-12">
+    constructor(props) {
+        super(props);
+        this.state = {
+            notes: [{title:'lorem',content:'lorem ipsum dolor, dolori.'},{title:'lorem',content:'lorem ipsum dolor, dolori.'}]
+        }
+    }
 
+
+    render(){
+        return (
+            <div className="container">
+
+                <div className="app">
+                    <header className="app-header">
+                        <h1>React+Redux Taking Note</h1>
+                    </header>
                 </div>
+
+                <div className="row">
+                    <div className="col-md-12">
+                        <NoteList notes={this.state.notes}></NoteList>
+                    </div>
+                </div>
+                <footer>
+                    <small>
+                        made by <a href="https://google.com">Mido Ahmed</a>, source code available on <a href="https://github.com/MidoAhmed/reactjs-easy-note-app/">github</a>
+                    </small>
+                </footer>
             </div>
-            <footer>
-                <small>
-                    made by <a href="https://google.com">Mido Ahmed</a>, source code available on <a href="https://github.com/MidoAhmed/reactjs-easy-note-app/">github</a>
-                </small>
-            </footer>
-        </div>
-    );
+        );
+    }
 }
 
 export default App;
