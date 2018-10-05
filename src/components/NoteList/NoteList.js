@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './NoteList.css';
+import './NoteList.scss';
 
 
 class NoteList extends Component {

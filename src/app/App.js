@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import './App.css';
+import './App.scss';
 import  NoteListContainer from '../containers/NoteListContainer';
 import { observer, inject } from 'mobx-react'
 
