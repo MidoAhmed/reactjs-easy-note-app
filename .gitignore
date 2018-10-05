@@ -22,7 +22,7 @@ yarn-error.log*
 
 
 #config
-config.js
+/src/config.js
 
 /config
 /scripts
