@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import './App.css';
-import  NoteList from '../components/NoteList/NoteList';
+import  NoteListContainer from '../containers/NoteListContainer';
 import { observer, inject } from 'mobx-react'
 
 
@@ -10,8 +10,9 @@ class App extends Component{
 
     constructor(props) {
         super(props);
+
         this.state = {
-            notes: [{title:'lorem',content:'lorem ipsum dolor, dolori.'},{title:'lorem',content:'lorem ipsum dolor, dolori.'}]
+            notes: [{id:1, title:'lorem',content:'lorem ipsum dolor, dolori.'},{id:2,title:'lorem',content:'lorem ipsum dolor, dolori.'}]
         }
     }
 
@@ -19,16 +20,15 @@ class App extends Component{
     render(){
         return (
             <div className="container">
-
                 <div className="app">
                     <header className="app-header">
-                        <h1>React+Redux Taking Note</h1>
+                        <h1>React+Mobx Taking Note</h1>
                     </header>
                 </div>
 
                 <div className="row">
                     <div className="col-md-12">
-                        <NoteList notes={this.state.notes}></NoteList>
+                        <NoteListContainer/>
                     </div>
                 </div>
                 <footer>

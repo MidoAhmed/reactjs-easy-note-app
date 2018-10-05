@@ -1,7 +1,10 @@
-import {observable,action,computed} from 'mobx';
+import {observable,action,computed, runInAction} from 'mobx';
+import ApiService from '../services/ApiService';
 
-export default class NotesStore {
+class NotesStore {
 
+    @observable isLoading = false;
+    @observable isFailure = false;
     @observable notes = [];
 
 
@@ -9,8 +12,23 @@ export default class NotesStore {
         return this.notes.length;
     }
 
-    @action
-    setNotes(notes) {
-        this.notes = notes;
+    @action async getNotes() {
+        try {
+            const data = await ApiService.get_notes();
+            runInAction(() => {
+                this.isLoading = false;
+                this.notes = data;
+                console.log('data :',data);
+            })
+        } catch (e) {
+            runInAction(() => {
+                this.isLoading = false;
+                this.isFailure = true;
+                this.notes = [];
+            })
+        }
     }
 }
+
+export default new NotesStore()
+export { NotesStore }
