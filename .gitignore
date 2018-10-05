@@ -23,3 +23,9 @@ yarn-error.log*
 
 #config
 config.js
+
+/config
+/scripts
+
+#IDE
+.idea/
