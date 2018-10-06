@@ -19,3 +19,14 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+#config
+/src/config.js
+
+#webpack file config
+config/
+scripts/
+
+#IDE
+.idea/
