@@ -1,9 +1,9 @@
 import {observable,action,computed, runInAction} from 'mobx';
-import ApiService from '../services/ApiService';
+import NoteServices from '../services/NoteServices';
 
 class NotesStore {
 
-    @observable isLoading = false;
+    @observable isLoading = true;
     @observable isFailure = false;
     @observable notes = [];
 
@@ -14,7 +14,7 @@ class NotesStore {
 
     @action async getNotes() {
         try {
-            const data = await ApiService.get_notes();
+            const data = await NoteServices.get_notes();
             runInAction(() => {
                 this.isLoading = false;
                 this.notes = data;

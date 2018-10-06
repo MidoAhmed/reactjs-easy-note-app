@@ -1,12 +1,18 @@
-import api,{API_URL} from '../config';
+import {API_URL} from '../config';
 
-class ApiSerice {
-
+export default class AppServices {
 
     constructor() {
         this.api_url = API_URL;
     }
 
+    /**
+     * Service function to avoid repetition of fetch everywhere
+     * @param {string} url - url to fetch
+     * @param {string} method - method get or post
+     * @param {string|boolean} token  - authentication token
+     * @param {object|null} params - params payload
+     */
     async apiCall(url, method = 'GET', token = false, params = null) {
         let payload = {
             method,
@@ -55,14 +61,5 @@ class ApiSerice {
         return;
     }
 
-
-    //get notes list
-    async get_notes() {
-        const res = await this.apiCall(api.notes, 'GET');
-        this.handleCommonError(res);
-        return res.body;
-    }
-
 }
 
-export default new ApiSerice()

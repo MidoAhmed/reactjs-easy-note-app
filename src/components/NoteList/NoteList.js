@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './NoteList.scss';
+import NoteListContainer from "../../containers/NoteListContainer";
+import PropTypes from 'prop-types';
 
 
 class NoteList extends Component {
@@ -37,3 +39,13 @@ class NoteList extends Component {
 }
 
 export default NoteList;
+
+// Specifies the default values for props:
+NoteList.defaultProps = {
+    notes: []
+};
+
+// You can declare that a prop is a specific JS type. By default, these
+NoteList.propTypes = {
+    notes: PropTypes.array
+};
