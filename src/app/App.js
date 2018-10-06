@@ -10,10 +10,6 @@ class App extends Component{
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            notes: [{id:1, title:'lorem',content:'lorem ipsum dolor, dolori.'},{id:2,title:'lorem',content:'lorem ipsum dolor, dolori.'}]
-        }
     }
 
 
