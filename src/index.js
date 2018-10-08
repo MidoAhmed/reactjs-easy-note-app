@@ -6,13 +6,18 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import notesStore from './store/notes.store'
 import {Provider} from "mobx-react";
+import { BrowserRouter } from 'react-router-dom'
+
+
 
 const stores = {
     notesStore
 };
 
 ReactDOM.render(<Provider { ...stores }>
-                        <App />
+                           <App />
+
+
                 </Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

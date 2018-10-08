@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './NoteList.scss';
-import NoteListContainer from "../../containers/NoteListContainer";
 import PropTypes from 'prop-types';
+import {Link} from "react-router-dom";
 
 
 class NoteList extends Component {
@@ -23,11 +23,14 @@ class NoteList extends Component {
                     {
                         this.props.notes.map((note,index) => {
                             return (
+
                                 <li key={note._id} className="note-item-wrapper">
-                                    <div>
-                                        <h6 className="note-title">{note.title}</h6>
-                                        <p className="note-content">{note.content}</p>
-                                    </div>
+                                    <Link to={'/notes/' + `${note._id}` } >
+                                        <div>
+                                            <h6 className="note-title">{note.title}</h6>
+                                            <p className="note-content">{note.content}</p>
+                                        </div>
+                                    </Link>
                                 </li>
                             )
                         })

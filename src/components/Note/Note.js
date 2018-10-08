@@ -1,14 +1,33 @@
 import React, { Component } from 'react';
 import './Note.scss';
+import { observer, inject } from 'mobx-react'
 
+
+@inject('notesStore')
+@observer
 class Note extends Component {
 
 
     constructor(props) {
         super(props);
+        this.state = {
+            id_note : this.props.match.params.id_note
+        };
+    }
+
+    // is executed just before the React Component is about to mount on the DOM.
+    componentWillMount(){
+    }
+
+
+    // this is the hook method which is executed after the component did mount on the DOM.
+    async componentDidMount() {
+        //The API calls should be made in componentDidMount method always.
+        await this.props.notesStore.getNote(this.state.id_note);
     }
 
   render() {
+
     return (
       <div className="note-details-wrapper">
 

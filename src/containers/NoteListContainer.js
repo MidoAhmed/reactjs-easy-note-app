@@ -39,7 +39,7 @@ class NoteListContainer extends React.Component {
 
         //add failure state
         if (notesStore.isFailure) {
-            return <span>Error loading users!</span>;
+            return <span>Error loading notes!</span>;
         }
 
         return <div className="notes-list-container">
