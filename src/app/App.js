@@ -1,7 +1,10 @@
 import React,{ Component } from 'react';
 import './App.scss';
 import  NoteListContainer from '../containers/NoteListContainer';
-import { observer, inject } from 'mobx-react'
+import {observer, inject, Provider} from 'mobx-react'
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+import Note from "../components/Note/Note";
+import NotFoundError from "../components/Errors/NotFound";
 
 
 @inject('notesStore')
@@ -24,7 +27,14 @@ class App extends Component{
 
                 <div className="row">
                     <div className="col-md-12">
-                        <NoteListContainer/>
+                        <BrowserRouter>
+                            <Switch>
+                                <Route path={"/"} component={NoteListContainer}  exact/>
+                                <Route path={"/notes"} component={NoteListContainer} exact />
+                                <Route path={"/notes/:id_note"} component={Note}  />
+                                <Route component={NotFoundError}/>
+                            </Switch>
+                        </BrowserRouter>
                     </div>
                 </div>
                 <footer>
