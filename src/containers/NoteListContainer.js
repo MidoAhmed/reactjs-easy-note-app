@@ -2,8 +2,7 @@ import React from 'react'
 import {observer, inject} from 'mobx-react'
 import NoteList from '../components/NoteList/NoteList'
 import {BubbleLoader} from 'react-css-loaders';
-import history from '../services/history'
-
+import Swal from "sweetalert2";
 
 @inject('notesStore')
 @observer
@@ -29,6 +28,32 @@ class NoteListContainer extends React.Component {
         await this.props.notesStore.getNotes();
     }
 
+    async removeNote(id_note){
+        this.props.notesStore.isLoading = true;
+        await this.props.notesStore.removeNote(id_note);
+
+        const toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000
+        });
+
+        //success update
+        if(!this.props.notesStore.isFailure){
+            toast({
+                type: 'success',
+                title: this.props.notesStore.response_message
+            });
+            this.getNotes();
+        }else{
+            toast({
+                type: 'error',
+                title: this.props.notesStore.response_message
+            })
+        }
+    }
+
 
     // mounts the component onto the browser.
     render() {
@@ -45,7 +70,7 @@ class NoteListContainer extends React.Component {
         }
 
         return <div className="notes-list-container">
-                    {notesStore.notes && <NoteList notes={notesStore.notes}/>}
+                    {notesStore.notes && <NoteList deleteHundler={this.removeNote.bind(this)}  notes={notesStore.notes}/>}
                     <div className="d-flex justify-content-end">
                         <button type="button"  className="btn btn-info btn-circle btn-lg" onClick={() => this.props.history.push('/notes/add')}>
                             +

@@ -36,6 +36,13 @@ class NoteServices extends AppServices{
         return res.body;
     }
 
+    //remove a note
+    async delete_note(id_note) {
+        const res = await this.apiCall(api.notes + "/" + `${id_note}`, 'DELETE');
+        this.handleCommonError(res);
+        return res.body;
+    }
+
 }
 
 export default new NoteServices()

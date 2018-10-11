@@ -84,6 +84,21 @@ class NotesStore {
         }
     }
 
+    @action async removeNote(id_note) {
+        try {
+            const data = await NoteServices.delete_note(id_note);
+            runInAction(() => {
+                this.isLoading = false;
+                this.response_message = data.message;
+            })
+        } catch (e) {
+            runInAction(() => {
+                this.isLoading = false;
+                this.isFailure = true;
+                this.response_message = e.message;
+            })
+        }
+    }
 }
 
 export default new NotesStore()
