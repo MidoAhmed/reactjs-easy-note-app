@@ -7,6 +7,8 @@ class NotesStore {
     @observable isFailure = false;
     @observable notes = [];
     @observable note = null;
+    @observable response_message = '';
+
 
 
     @computed get notesCount() {
@@ -36,13 +38,64 @@ class NotesStore {
             runInAction(() => {
                 this.isLoading = false;
                 this.note = data;
-                console.log('data :',data);
             })
         } catch (e) {
             runInAction(() => {
                 this.isLoading = false;
                 this.isFailure = true;
                 this.note = null;
+            })
+        }
+    }
+
+    @action async updateNote(id_note,params) {
+
+        try {
+            const data = await NoteServices.update_note(id_note,params);
+            runInAction(() => {
+                this.isLoading = false;
+                this.note = data.data;
+                this.response_message = data.message;
+            })
+        } catch (e) {
+            runInAction(() => {
+                this.isLoading = false;
+                this.isFailure = true;
+                this.note = null;
+                this.response_message = e.message;
+            })
+        }
+    }
+
+    @action async createNote(params) {
+
+        try {
+            const data = await NoteServices.create_note(params);
+            runInAction(() => {
+                this.isLoading = false;
+                this.response_message = data.message;
+            })
+        } catch (e) {
+            runInAction(() => {
+                this.isLoading = false;
+                this.isFailure = true;
+                this.response_message = e.message;
+            })
+        }
+    }
+
+    @action async removeNote(id_note) {
+        try {
+            const data = await NoteServices.delete_note(id_note);
+            runInAction(() => {
+                this.isLoading = false;
+                this.response_message = data.message;
+            })
+        } catch (e) {
+            runInAction(() => {
+                this.isLoading = false;
+                this.isFailure = true;
+                this.response_message = e.message;
             })
         }
     }

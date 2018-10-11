@@ -5,6 +5,8 @@ import {observer, inject, Provider} from 'mobx-react'
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Note from "../components/Note/Note";
 import NotFoundError from "../components/Errors/NotFound";
+import NoteContainer from "../containers/NoteContainer";
+import AddNoteContainer from "../containers/AddNoteContainer";
 
 
 @inject('notesStore')
@@ -31,7 +33,8 @@ class App extends Component{
                             <Switch>
                                 <Route path={"/"} component={NoteListContainer}  exact/>
                                 <Route path={"/notes"} component={NoteListContainer} exact />
-                                <Route path={"/notes/:id_note"} component={Note}  />
+                                <Route path={"/notes/add"} component={AddNoteContainer}  exact/>
+                                <Route path={"/notes/:id_note"} component={NoteContainer}  />
                                 <Route component={NotFoundError}/>
                             </Switch>
                         </BrowserRouter>
