@@ -22,6 +22,27 @@ class NoteServices extends AppServices{
         return res.body;
     }
 
+    //update note info
+    async update_note(id_note,params) {
+        const res = await this.apiCall(api.notes + "/" + `${id_note}`, 'PUT', false, params);
+        this.handleCommonError(res);
+        return res.body;
+    }
+
+    //create a new note
+    async create_note(params) {
+        const res = await this.apiCall(api.notes, 'POST', false, params);
+        this.handleCommonError(res);
+        return res.body;
+    }
+
+    //remove a note
+    async delete_note(id_note) {
+        const res = await this.apiCall(api.notes + "/" + `${id_note}`, 'DELETE');
+        this.handleCommonError(res);
+        return res.body;
+    }
+
 }
 
 export default new NoteServices()

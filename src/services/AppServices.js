@@ -56,7 +56,7 @@ export default class AppServices {
             */
         }
         if (response.status !== 200 && response.status !== 201) {
-            throw new Error(response.status)
+            throw new Error(response.body.message)
         }
         return;
     }
