@@ -25,8 +25,8 @@ yarn-error.log*
 /src/config.js
 
 #webpack file config
-config/
-scripts/
+#config/
+#scripts/
 
 #IDE
 .idea/
